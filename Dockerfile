@@ -1,7 +1,7 @@
 FROM python:3.11.5
 
-WORKDIR /app
-COPY . /app
+# WORKDIR /app
+# COPY . /app
 
 # Install Python dependencies
 RUN pip install -r requirements.txt
