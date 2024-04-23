@@ -1,8 +1,9 @@
-python_version == 3.11.5
 fastapi
-python-multipart
-imutils
+python-multipart==0.0.9
+imutils==0.5.4
 scipy
-cvzone
-tensorflow
-uvicorn
+cvzone==1.3.3
+tensorflow==2.15.0
+uvicorn==0.23.2
+fastapi==0.103.1
+python-dotenv==1.0.0
