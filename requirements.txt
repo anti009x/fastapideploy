@@ -1,8 +1,0 @@
-python-multipart
-imutils
-scipy
-cvzone
-tensorflow
-uvicorn
-fastapi
-python-dotenv
