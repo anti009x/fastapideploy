@@ -1,8 +1,8 @@
 python-multipart
 imutils
 scipy
-cvzone==1.3.3
-tensorflow==2.15.0
+cvzone
+tensorflow
 uvicorn
 fastapi
 python-dotenv
