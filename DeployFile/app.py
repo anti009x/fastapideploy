@@ -2,7 +2,7 @@ import cv2 as cv
 from cvzone.ClassificationModule import Classifier
 from fastapi import FastAPI, UploadFile, File
 import numpy as np
-from model import descriptions
+from DeployFile.model import descriptions
 from imutils import perspective
 from imutils import contours
 import imutils
