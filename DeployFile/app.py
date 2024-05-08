@@ -37,8 +37,8 @@ async def redoc_html():
 
 async def swagger_ui_redirect():
     return get_swagger_ui_oauth2_redirect_html()
-model_path = "keras_model.h5"
-labels_path = "labels.txt"
+model_path = "DeployFile/keras_model.h5"
+labels_path = "DeployFile/labels.txt"
 data = Classifier(model_path, labels_path)
 
 cap = cv.VideoCapture(0)
