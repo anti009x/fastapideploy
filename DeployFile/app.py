@@ -60,7 +60,7 @@ async def klasifikasi(file: UploadFile = File(...)):
     nparr = np.frombuffer(contents, np.uint8)
     img = cv.imdecode(nparr, cv.IMREAD_COLOR)
 
-    predict, index = data.getPrediction(img, color=(255, 0, 0))
+    predict, index = data.getPrediction(img,cv2.COLOR_BGR2HS)
 
     with open(labels_path, 'r') as file:
         labels = file.readlines()
