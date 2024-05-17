@@ -43,8 +43,8 @@ labels_path = "DeployFile/labels.txt"
 data = Classifier(model_path, labels_path)
 
 cap = cv.VideoCapture(0)
-cap.set(cv.CAP_PROP_FRAME_WIDTH, 1920)
-cap.set(cv.CAP_PROP_FRAME_HEIGHT, 1080)
+cap.set(cv.CAP_PROP_FRAME_WIDTH, 1280)
+cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)
 
 def persentase(persentasi):
     return {"Persentase": f"{round(max(persentasi))}%"}
