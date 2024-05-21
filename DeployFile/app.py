@@ -47,7 +47,7 @@ cap.set(cv.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)
 
 def persentase(persentasi):
-    return {"Persentase": f"{round(max(persentasi))}%"}
+    return {"Persentase": f"{round(persentasi)}%"}
 
 @app.get("/")
 async def read_root():
@@ -74,10 +74,14 @@ async def klasifikasi(file: UploadFile = File(...)):
     confidence_scores = predict
     total_confidence = sum(confidence_scores)
     persentase_detections = [(score / total_confidence) * 100 for score in confidence_scores]
-    
+
+    max_index = persentase_detections.index(max(persentase_detections))
+    max_percentage = persentase_detections[max_index]
+    class_name = labels[max_index]
+
     img , wid , ht = box_model(img,pixel_per_cm)
 
-    persentasi = persentase(persentase_detections)
+    persentasi = persentase(max_percentage)
 
     if labels[index] in descriptions:
         obj_desc = descriptions[labels[index]]()
