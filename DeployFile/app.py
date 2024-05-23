@@ -65,8 +65,8 @@ async def klasifikasi(file: UploadFile = File(...)):
     with open(labels_path, 'r') as file:
         labels = file.readlines()
   
-    known_width_in_pixels = 35
-    known_width_in_cm = 15 
+    known_width_in_pixels = 17
+    known_width_in_cm = 7
     pixel_per_cm = known_width_in_pixels / known_width_in_cm
 
     labels = [label.strip() for label in labels]
