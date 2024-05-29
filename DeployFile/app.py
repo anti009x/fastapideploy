@@ -86,6 +86,6 @@ async def klasifikasi(file: UploadFile = File(...)):
     if labels[index] in descriptions:
         obj_desc = descriptions[labels[index]]()
         obj_desc.update(persentasi)
-        return {"Nama_Barang": labels[index], "Lebar_cm": wid, "Tinggi_cm": ht, **obj_desc}
+        return {"Nama_Barang": labels[index], "Lebar_cm": round(wid,2), "Tinggi_cm": round(ht,2), **obj_desc}
     else:
         return {"error": "Objek tidak ditemukan/ Belum Di Traning"}
