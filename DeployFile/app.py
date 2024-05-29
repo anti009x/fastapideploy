@@ -43,8 +43,8 @@ labels_path = "DeployFile/labels.txt"
 data = Classifier(model_path, labels_path)
 
 cap = cv.VideoCapture(0)
-cap.set(cv.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)
+cap.set(cv.CAP_PROP_FRAME_WIDTH, 1920)
+cap.set(cv.CAP_PROP_FRAME_HEIGHT, 1080)
 
 def persentase(persentasi):
     return {"Persentase": f"{round(persentasi)}%"}
@@ -60,13 +60,17 @@ async def klasifikasi(file: UploadFile = File(...)):
     nparr = np.frombuffer(contents, np.uint8)
     img = cv.imdecode(nparr, cv.IMREAD_COLOR)
 
-    predict, index = data.getPrediction(img,cv.COLOR_BGR2HSV)
+    predict, index = data.getPrediction(img, color=(255, 0, 0))
+    
+    
 
     with open(labels_path, 'r') as file:
         labels = file.readlines()
   
-    known_width_in_pixels = 17
-    known_width_in_cm = 7
+
+    known_width_in_pixels = 150.0  # Use a floating point for more precise calculations
+    known_width_in_cm = 30.0       # Use a floating point for more precise calculations
+
     pixel_per_cm = known_width_in_pixels / known_width_in_cm
 
     labels = [label.strip() for label in labels]
@@ -74,18 +78,18 @@ async def klasifikasi(file: UploadFile = File(...)):
     confidence_scores = predict
     total_confidence = sum(confidence_scores)
     persentase_detections = [(score / total_confidence) * 100 for score in confidence_scores]
-
+    
     max_index = persentase_detections.index(max(persentase_detections))
     max_percentage = persentase_detections[max_index]
     class_name = labels[max_index]
-
-    img , wid , ht = box_model(img,pixel_per_cm)
-
+    
+    img, wid, ht = box_model(img, pixel_per_cm)
+   
     persentasi = persentase(max_percentage)
 
     if labels[index] in descriptions:
         obj_desc = descriptions[labels[index]]()
         obj_desc.update(persentasi)
-        return {"Nama_Barang": labels[index], "Lebar_cm": round(wid,2), "Tinggi_cm": round(ht,2), **obj_desc}
+        return {"Nama_Barang": labels[index], "Lebar_cm": round (wid), "Tinggi_cm": round (ht), **obj_desc}
     else:
         return {"error": "Objek tidak ditemukan/ Belum Di Traning"}

@@ -6,7 +6,7 @@ Makanan
 Buah
 Meja
 Baju
-keyboard
+Keyboard
 Kasur
 Alas Kaki
 Lemari
@@ -17,3 +17,25 @@ Monitor
 Celana
 Jaket
 Buku
+Handphone
+Table Lamp
+AC
+Cable USB
+Charger
+Karpet
+Kipas
+Penggaris
+Garpu
+Sendok
+Piring
+Gelas
+Spatula
+Wajan
+Panci
+Headphone
+Kacamata
+Gunting
+Pisau
+Remote
+Cermin
+Penghapus
