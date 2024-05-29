@@ -17,3 +17,25 @@ Monitor
 Celana
 Jaket
 Buku
+Handphone
+TableLamp
+AC
+Cable USB
+Charger
+carpet
+kipas
+penggaris
+garpu
+sendok
+piring
+gelas
+spatula
+wajan
+panci
+headphone
+kacamata
+gunting
+pisau
+remote
+cermin
+penghapus
