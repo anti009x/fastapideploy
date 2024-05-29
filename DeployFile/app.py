@@ -62,15 +62,11 @@ async def klasifikasi(file: UploadFile = File(...)):
 
     predict, index = data.getPrediction(img, color=(255, 0, 0))
     
-    
-
-    with open(labels_path, 'r') as file:
-        labels = file.readlines()
+    with open(labels_path, 'r') as label_file:
+        labels = label_file.readlines()
   
-
-    known_width_in_pixels = 70  # Use a floating point for more precise calculations
-    known_width_in_cm = 30.0       # Use a floating point for more precise calculations
-
+    known_width_in_pixels = 150.0  # Use a floating point for more precise calculations
+    known_width_in_cm = 30.0      # Use a floating point for more precise calculations
     pixel_per_cm = known_width_in_pixels / known_width_in_cm
 
     labels = [label.strip() for label in labels]
@@ -90,6 +86,6 @@ async def klasifikasi(file: UploadFile = File(...)):
     if labels[index] in descriptions:
         obj_desc = descriptions[labels[index]]()
         obj_desc.update(persentasi)
-        return {"Nama_Barang": labels[index], "Lebar_cm": round (wid), "Tinggi_cm": round (ht), **obj_desc}
+        return {"Nama_Barang": labels[index], "Lebar_cm": round(wid), "Tinggi_cm": round(ht), **obj_desc}
     else:
-        return {"error": "Objek tidak ditemukan/ Belum Di Traning"}
+        return {"error": "Objek tidak ditemukan atau belum di-training"}

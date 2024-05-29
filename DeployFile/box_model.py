@@ -18,8 +18,13 @@ def box_model(img, pixel_per_cm):
     if contours:
             # Take the largest contour based on area
             cnt = max(contours, key=cv.contourArea)
+            # Filter contours that are significant in size
             contours = [cnt for cnt in contours if cv.contourArea(cnt) > 500 and cv.arcLength(cnt, True) > 100]
-            box = cv.minAreaRect(cnt)  # Corrected to use the largest contour
+            if not contours:
+                return img, None, None  # Return None if no significant contours are found
+            
+            cnt = contours[0]  # Use the first significant contour
+            box = cv.minAreaRect(cnt)
             box = cv.boxPoints(box)
             box = np.array(box, dtype="int")
             box = perspective.order_points(box)
@@ -28,9 +33,6 @@ def box_model(img, pixel_per_cm):
             # Calculate width and height using the calibrated pixel_per_cm
             wid = euclidean(tl, tr) / pixel_per_cm
             ht = euclidean(tr, br) / pixel_per_cm
-            
-            # mid_pt_horizontal = (tl[0] + int(abs(tr[0] - tl[0]) / 2), tl[1] + int(abs(tr[1] - tl[1]) / 2))
-            # mid_pt_verticle = (tr[0] + int(abs(tr[0] - br[0]) / 2), tr[1] + int(abs(tr[1] - br[1]) / 2))
             
             # Compute the bounding rectangle of the contour
             x, y, w, h = cv.boundingRect(cnt)
