@@ -85,7 +85,7 @@ async def klasifikasi(file: UploadFile = File(...)):
 
 
     if persentase_detections[max_index] < 70:
-        return {"error": "Objek tidak ditemukan atau belum di-training"}
+        return {"error": "Objek Kurang Dari Persentase"}
     else:
         if labels[index] in descriptions:
             obj_desc = descriptions[labels[index]]()
