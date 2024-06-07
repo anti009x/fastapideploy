@@ -83,9 +83,13 @@ async def klasifikasi(file: UploadFile = File(...)):
    
     persentasi = persentase(max_percentage)
 
-    if labels[index] in descriptions:
-        obj_desc = descriptions[labels[index]]()
-        obj_desc.update(persentasi)
-        return {"Nama_Barang": labels[index], "Lebar_cm": round(wid), "Tinggi_cm": round(ht), **obj_desc}
+
+    if persentase_detections[max_index] < 70:
+        return {"error": "Objek Kurang Dari Persentase"}
     else:
-        return {"error": "Objek tidak ditemukan atau belum di-training"}
+        if labels[index] in descriptions:
+            obj_desc = descriptions[labels[index]]()
+            obj_desc.update(persentasi)
+            return {"Nama_Barang": labels[index], "Lebar_cm": round(wid), "Tinggi_cm": round(ht), **obj_desc}
+        else:
+            return {"error": "Objek tidak ditemukan atau belum di-training"}
